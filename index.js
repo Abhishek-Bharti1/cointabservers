@@ -33,11 +33,18 @@ for(let i=0;i<user.length;i++){
 });
 }
 
+app.post('/postusers',async(req,res)=>{
+const users=getData();
+res.status(201).json({
+    success:true,
+    users
+})
 
+})
 
 
 app.get('/getusers',async(req,res)=>{
-     getData();
+ 
     const users=await UserModel.find({});
 
 
@@ -48,7 +55,7 @@ app.get('/getusers',async(req,res)=>{
 });
 
 app.delete('/removeusers',async(req,res)=>{
-    await UserModel.deleteMany({});
+    await UserModel.deleteMany();
     res.status(200).json({
         success:true,
         message:"Deleted Entries"
